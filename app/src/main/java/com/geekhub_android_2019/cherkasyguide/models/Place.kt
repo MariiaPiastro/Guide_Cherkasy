@@ -7,7 +7,7 @@ data class Place(
     @DocumentId
     val id: String? = null,
     val name: String? = null,
-    val location: GeoPoint? = null,
+    @Transient val location: GeoPoint? = null,
     val description: String? = null,
     val photoSmallUrl: String? = null,
     val photoLargeUrl: List<String>? = null

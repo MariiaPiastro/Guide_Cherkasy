@@ -18,7 +18,7 @@ class RouteViewModel : ViewModel(), OnDrawRouteFailure {
     private lateinit var placesForRoute: Places
 
     private var _endPlace = MutableLiveData<Place>()
-    val endPlace = _endPlace
+    val endPlace: LiveData<Place> = _endPlace
 
     private var _lastRadioState = MutableLiveData<Int> (R.id.button_car)
     val lastRadioState: LiveData<Int> = _lastRadioState
@@ -106,7 +106,7 @@ class RouteViewModel : ViewModel(), OnDrawRouteFailure {
             val startPoint = placesForRoute[count]
             val endPoint = placesForRoute[count + 1]
             _endPlace.value = endPoint
-            val places: Places = Places()
+            val places = Places()
             places.add(startPoint)
             places.add(endPoint)
             val markers = Utils.getMarkerList(places)

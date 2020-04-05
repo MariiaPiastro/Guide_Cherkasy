@@ -2,15 +2,18 @@ package com.geekhub_android_2019.cherkasyguide.ui.placemap
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.geekhub_android_2019.cherkasyguide.maputils.MapHelper
+import com.geekhub_android_2019.cherkasyguide.maputils.PlaceMarker
 import com.geekhub_android_2019.cherkasyguide.maputils.Utils
 import com.geekhub_android_2019.cherkasyguide.models.Places
 import com.google.android.gms.maps.GoogleMap
+import com.google.maps.android.clustering.ClusterManager
 
 class PlaceViewModel : ViewModel() {
 
     private lateinit var _places: Places
-
+    private lateinit var clusterManager: ClusterManager<PlaceMarker>
     private lateinit var mMap: GoogleMap
 
     fun init(places: Places) {
@@ -23,7 +26,7 @@ class PlaceViewModel : ViewModel() {
         mMap.uiSettings.isZoomControlsEnabled = true
         MapHelper.clearMap(googleMap)
         val markersList = Utils.getMarkerList(_places)
-        MapHelper.setUpClusterOfMarkers(mMap, markersList, context)
+        clusterManager = MapHelper.setUpClusterOfMarkers(mMap, markersList, context)
         val updateCamera =
             if (markersList.toList().size == 1) {
                 MapHelper.updateCameraZoom(markersList)
@@ -31,5 +34,20 @@ class PlaceViewModel : ViewModel() {
                 MapHelper.updateCameraBounds(markersList)
             }
         MapHelper.setUpCamera(mMap, updateCamera)
+    }
+
+    fun onInfoWindowClick(navController: NavController) {
+        clusterManager.setOnClusterItemInfoWindowClickListener { placeMarker ->
+            _places.forEach { place ->
+                if (place.name == placeMarker.title) {
+                    PlaceMapFragmentDirections.actionToPlaceDetailFragment(
+                        place,
+                        place.name
+                    ).also {
+                        navController.navigate(it)
+                    }
+                }
+            }
+        }
     }
 }

@@ -5,8 +5,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.geekhub_android_2019.cherkasyguide.R
@@ -20,7 +21,7 @@ class RouteMapFragment : Fragment(R.layout.fragment_map_route), OnMapReadyCallba
     View.OnClickListener {
 
     private val args: RouteMapFragmentArgs by navArgs()
-    private val routeViewModel: RouteViewModel by activityViewModels()
+    private val routeViewModel: RouteViewModel by viewModels()
 
     var mCount = 0
 
@@ -31,12 +32,15 @@ class RouteMapFragment : Fragment(R.layout.fragment_map_route), OnMapReadyCallba
 
         map_view.getMapAsync(this)
 
+        textView_end_point.visibility = GONE
+
         button_walking.setOnClickListener(this)
         button_car.setOnClickListener(this)
         button_start_route.setOnClickListener {
             routeViewModel.buttonStartClick(mCount, it)
             button_car.visibility = GONE
             button_walking.visibility = GONE
+            textView_end_point.visibility = VISIBLE
             mCount++
         }
     }

@@ -4,10 +4,11 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.geekhub_android_2019.cherkasyguide.R
-import com.geekhub_android_2019.cherkasyguide.ui.routemap.RouteViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import kotlinx.android.synthetic.main.fragment_map.*
@@ -15,7 +16,9 @@ import kotlinx.android.synthetic.main.fragment_map.*
 class PlaceMapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
 
     private val args: PlaceMapFragmentArgs by navArgs()
-    private val  placeViewModel: PlaceViewModel by activityViewModels()
+    private val placeViewModel: PlaceViewModel by viewModels()
+    private val controller: NavController
+        get() = findNavController()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,11 +36,12 @@ class PlaceMapFragment : Fragment(R.layout.fragment_map), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         placeViewModel.createMap(googleMap, activity!!.applicationContext)
+        placeViewModel.onInfoWindowClick(controller)
     }
 
     override fun onResume() {
-        map_view.onResume()
         super.onResume()
+        map_view.onResume()
     }
 
     override fun onDestroyView() {

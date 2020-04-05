@@ -52,7 +52,7 @@ object MapHelper {
     fun updateCameraZoom(markerList: ArrayList<PlaceMarker>): CameraUpdate {
         return CameraUpdateFactory.newLatLngZoom(
             markerList[0].position,
-            15.0f
+            16.0f
         )
     }
 
@@ -66,12 +66,13 @@ object MapHelper {
         googleMap: GoogleMap,
         markerList: ArrayList<PlaceMarker>,
         context: Context
-    ) {
+    ): ClusterManager<PlaceMarker> {
         val manager = ClusterManager<PlaceMarker>(context, googleMap)
         manager.renderer = ClusterMarkerRenderer(context, googleMap, manager)
         manager.algorithm = GridBasedAlgorithm()
         manager.addItems(markerList)
         manager.cluster()
+        return manager
     }
 
     fun setUpMarker(marker: PlaceMarker, number: String, googleMap: GoogleMap) {

@@ -3,6 +3,7 @@ package com.geekhub_android_2019.cherkasyguide.maputils
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.util.Log
 import com.geekhub_android_2019.cherkasyguide.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
