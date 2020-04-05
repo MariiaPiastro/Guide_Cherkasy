@@ -138,7 +138,7 @@ object MapHelper {
         }
     }
 
-    fun addPolyline(googleMap: GoogleMap, list: List<LatLng>, width: Float, color: Int): Polyline {
+    private fun addPolyline(googleMap: GoogleMap, list: List<LatLng>, width: Float, color: Int): Polyline {
         return googleMap.addPolyline(
             Utils.polylineOptions(list, width, color)
         )

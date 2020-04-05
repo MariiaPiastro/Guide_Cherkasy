@@ -63,9 +63,9 @@ class RouteMapFragment : Fragment(R.layout.fragment_map_route), OnMapReadyCallba
         routeViewModel.lastRadioState.observe(this, Observer {
             listOf(button_car, button_walking).forEach {
                 if (it.id == routeViewModel.lastRadioState.value) {
-                    it.setBackgroundColor(activity!!.applicationContext.getColor(R.color.colorSecondaryLight))
+                    it.setIconTintResource(R.color.colorPrimary)
                 } else {
-                    it.setBackgroundColor(Color.WHITE)
+                    it.setIconTintResource(R.color.black)
                 }
             }
         })

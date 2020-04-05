@@ -38,6 +38,7 @@
                 app:cornerRadius="15dp"
                 app:backgroundTint="@color/white"
                 app:icon="@drawable/ic_car"
+                app:iconTint="@color/black"
                 app:iconGravity="textStart" />
 
             <com.google.android.material.button.MaterialButton
@@ -49,6 +50,7 @@
                 app:backgroundTint="@color/white"
                 app:cornerRadius="15dp"
                 app:icon="@drawable/ic_walking"
+                app:iconTint="@color/black"
                 app:iconGravity="textStart" />
         </LinearLayout>
 
@@ -57,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:backgroundTint="@color/colorSecondaryLight"
+            app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_start"
@@ -68,7 +70,7 @@
         android:id="@+id/textView_end_point"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="12dp"
         android:gravity="center"
         android:background="@color/colorPrimary"
         android:textStyle="bold"
