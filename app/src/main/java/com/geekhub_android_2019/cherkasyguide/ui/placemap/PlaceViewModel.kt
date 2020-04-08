@@ -1,14 +1,19 @@
 package com.geekhub_android_2019.cherkasyguide.ui.placemap
 
 import android.content.Context
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import com.geekhub_android_2019.cherkasyguide.R
 import com.geekhub_android_2019.cherkasyguide.maputils.MapHelper
 import com.geekhub_android_2019.cherkasyguide.maputils.PlaceMarker
 import com.geekhub_android_2019.cherkasyguide.maputils.Utils
 import com.geekhub_android_2019.cherkasyguide.models.Places
 import com.google.android.gms.maps.GoogleMap
 import com.google.maps.android.clustering.ClusterManager
+import kotlin.math.log
 
 class PlaceViewModel : ViewModel() {
 

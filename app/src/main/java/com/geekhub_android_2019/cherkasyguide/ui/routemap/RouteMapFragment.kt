@@ -91,6 +91,6 @@ class RouteMapFragment : Fragment(R.layout.fragment_map_route), OnMapReadyCallba
     }
 
     override fun onClick(view: View) {
-        routeViewModel.selectTypeOfRoute(view)
+        routeViewModel.selectTypeOfRoute(view.id)
     }
 }

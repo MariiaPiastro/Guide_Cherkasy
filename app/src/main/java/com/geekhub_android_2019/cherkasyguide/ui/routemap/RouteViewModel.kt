@@ -72,7 +72,7 @@ class RouteViewModel : ViewModel(), OnDrawRouteFailure {
         _statusDrawButton.value = false
     }
 
-    private fun buildWaypoints(): String {
+    fun buildWaypoints(): String {
         val waypointsBuilder = StringBuilder("")
         if (placesForRoute.size > 2) {
             var startElement = 1
@@ -90,9 +90,9 @@ class RouteViewModel : ViewModel(), OnDrawRouteFailure {
         return waypointsBuilder.toString()
     }
 
-    fun selectTypeOfRoute(view: View) {
-        _lastRadioState.value = view.id
-        when (view.id) {
+    fun selectTypeOfRoute(id: Int) {
+        _lastRadioState.value = id
+        when (id) {
             R.id.button_car -> {
                 _typeOfRoute.value = "driving"
             }

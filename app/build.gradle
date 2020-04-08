@@ -44,6 +44,10 @@ android {
                 "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
         ]
     }
+
+    testOptions.unitTests {
+        includeAndroidResources = true
+    }
 }
 
 repositories {
@@ -53,15 +57,20 @@ repositories {
 dependencies {
     def nav_version = "2.2.1"
     def auth_version = '19.3.0'
-    def firestore_version = '21.4.1'
+    def firestore_version = '21.4.2'
     def coroutines_version = '1.3.3'
     def lifecycle_version = '2.2.0'
-    def retrofit_version = '2.7.2'
+    def retrofit_version = '2.8.1'
     def moshi_version = '1.9.2'
     def play_services_version = '17.0.0'
+    def hamcrestVersion = '1.3'
+    def androidXTestExtKotlinRunnerVersion= '1.1.2-alpha05'
+    def androidXTestCoreVersion ='1.3.0-alpha05'
+    def robolectricVersion = '4.3.1'
+    def archTestingVersion = '2.1.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.70"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.71'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -72,6 +81,13 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+    testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+
 
     // navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -107,7 +123,7 @@ dependencies {
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
 
     //moshi
     implementation "com.squareup.moshi:moshi:$moshi_version"
